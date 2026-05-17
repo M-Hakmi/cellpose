@@ -15,7 +15,6 @@ install_deps = [
     'roifile',
     'fill-voids',
     'segment_anything',
-    'dinov3 @ git+https://github.com/facebookresearch/dinov3.git'
 ]
 
 image_deps = ['nd2', 'pynrrd']
@@ -44,6 +43,10 @@ distributed_deps = [
 
 bioimageio_deps = [
     'bioimageio.core',
+]
+
+dino_deps = [
+    'dinov3 @ git+https://github.com/facebookresearch/dinov3.git'
 ]
 
 try:
@@ -91,11 +94,12 @@ setup(
         'setuptools_scm',
     ], packages=setuptools.find_packages(), use_scm_version=True,
     install_requires=install_deps, tests_require=['pytest'], extras_require={
+        'dino': dino_deps,
         'docs': docs_deps,
-        'gui': gui_deps,
+        'gui': gui_deps + dino_deps,
         'distributed': distributed_deps,
         'bioimageio': bioimageio_deps,
-        'all': gui_deps + distributed_deps + image_deps + bioimageio_deps,
+        'all': gui_deps + distributed_deps + image_deps + bioimageio_deps + dino_deps,
     }, include_package_data=True, classifiers=(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: BSD License",
