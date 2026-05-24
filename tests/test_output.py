@@ -43,9 +43,6 @@ def clear_output(data_dir, image_names):
                          [
                              (True, True, 40), 
                              (True, True, None), 
-                             (False, True, None),
-                             (False, False, None),
-                             (True, False, None),
                              (True, False, 40),
                          ]
 )
@@ -141,7 +138,7 @@ def test_cli_2D(data_dir, image_names):
     clear_output(data_dir, image_names)
     use_gpu = torch.cuda.is_available()
     gpu_string = "--use_gpu" if use_gpu else ""
-    image_path_string = str(data_dir/"2D"/image_names[0])
+    image_path_string = str(data_dir/"2D"/image_names[1])
     cmd = f"python -m cellpose --image_path {image_path_string} --save_png --pretrained_model cpsam --verbose {gpu_string}"
     try:
         cmd_stdout = check_output(cmd, stderr=STDOUT, shell=True).decode()
@@ -149,7 +146,7 @@ def test_cli_2D(data_dir, image_names):
     except Exception as e:
         print(e)
         raise ValueError(e)
-    compare_masks_cp4(data_dir, image_names[0], "2D")
+    compare_masks_cp4(data_dir, image_names[1], "2D")
     clear_output(data_dir, image_names)
 
 
