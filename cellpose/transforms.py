@@ -879,7 +879,7 @@ def random_rotate_and_resize(imgs, lbls=None, scale_range=1., bsize=256, rescale
         flip = np.random.rand() > 0.5
         translations = list(dyx * np.random.rand(2) * 1 - dyx * 0.5)
         matrix = F._get_inverse_affine_matrix([0., 0.], angle, translations, scale, [0., 0.])
-        theta = torch.tensor(matrix, device=device).reshape(1, 2, 3)
+        theta = torch.tensor(matrix.astype("float32"), device=device).reshape(1, 2, 3)
         grid = F_t._gen_affine_grid(theta, w=Lx, h=Ly, ow=yx[1], oh=yx[0])
 
         # apply affine transform
