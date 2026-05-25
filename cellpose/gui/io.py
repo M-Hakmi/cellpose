@@ -194,6 +194,7 @@ def _initialize_images(parent, image, load_3D=False):
     parent.imask = 0
     parent.Ly, parent.Lx = parent.stack.shape[-3:-1]
     parent.Ly0, parent.Lx0 = parent.stack.shape[-3:-1]
+    parent.nchan = parent.stack.shape[-1]
     parent.layerz = 255 * np.ones((parent.Ly, parent.Lx, 4), "uint8")
     if hasattr(parent, "stack_filtered"):
         parent.Lyr, parent.Lxr = parent.stack_filtered.shape[-3:-1]
@@ -208,11 +209,7 @@ def _initialize_images(parent, image, load_3D=False):
         parent.logger.info(": no 'img_restore' found, applying current settings")
         parent.compute_restore()
 
-    if parent.autobtn.isChecked():
-        if parent.restore is None or parent.restore != "filter":
-            parent.logger.info(": normalization checked: computing saturation levels (and optionally filtered image)")
-            parent.compute_saturation()
-    
+    parent.compute_saturation()    
     parent.compute_scale()
     parent.track_changes = []
 

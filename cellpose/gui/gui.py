@@ -674,10 +674,10 @@ class MainW(QMainWindow):
         if self.loaded:
             sval = self.sliders[r].value()
             self.saturation[r][self.currentZ] = sval
-            if not self.autobtn.isChecked():
-                for r in range(3):
-                    for i in range(len(self.saturation[r])):
-                        self.saturation[r][i] = self.saturation[r][self.currentZ]
+            # if not self.autobtn.isChecked():
+            for r in range(3):
+                for i in range(len(self.saturation[r])):
+                    self.saturation[r][i] = self.saturation[r][self.currentZ]
             self.update_plot()
 
     def keyPressEvent(self, event):
@@ -834,8 +834,7 @@ class MainW(QMainWindow):
     def disable_buttons_removeROIs(self):
         if len(self.model_strings) > 0:
             self.ModelButtonC.setEnabled(False)
-        for i in range(len(self.StyleButtons)):
-            self.StyleButtons[i].setEnabled(False)
+        self.ModelButtonB.setEnabled(False)
         self.newmodel.setEnabled(False)
         self.loadMasks.setEnabled(False)
         self.saveSet.setEnabled(False)
@@ -1851,6 +1850,7 @@ class MainW(QMainWindow):
         else:
             img_norm = self.stack if self.restore is None or self.restore == "filter" else self.stack_filtered
 
+            
         if self.autobtn.isChecked():
             self.saturation = []
             for c in range(img_norm.shape[-1]):
@@ -1881,11 +1881,24 @@ class MainW(QMainWindow):
                 else:
                     for n in range(self.NZ):
                         self.saturation[-1].append([0, 255.])
-            print(self.saturation[2][self.currentZ])
-
-            if img_norm.shape[-1] == 1:
-                self.saturation.append(self.saturation[0])
-                self.saturation.append(self.saturation[0])
+        
+        elif len(self.saturation) == 0 or len(self.saturation[0]) != self.NZ:
+            self.saturation = []
+            for r in range(3):
+                self.saturation.append([])
+                for n in range(self.NZ):
+                    self.saturation[-1].append([0, 255])
+                self.sliders[r].setValue([0, 255])
+        
+        if img_norm.shape[-1] == 1:
+            if len(self.saturation) > 1:
+                self.saturation = [self.saturation[0]]
+            self.saturation.append(self.saturation[0])
+            self.saturation.append(self.saturation[0])
+            self.sliders[1].setValue(self.saturation[1][self.currentZ])
+            self.sliders[2].setValue(self.saturation[2][self.currentZ])
+        else:
+            self.saturation = [copy.deepcopy(self.saturation[r]) for r in range(img_norm.shape[-1])]
 
 
     def get_model_path(self, custom=False):
