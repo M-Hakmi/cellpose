@@ -1885,24 +1885,23 @@ class MainW(QMainWindow):
                 self.saturation.append([])
                 for n in range(self.NZ):
                     self.saturation[-1].append([0, 255])
-                self.sliders[r].setValue([0, 255])
         
         if img_norm.shape[-1] == 1:
             if len(self.saturation) > 1:
                 self.saturation = [self.saturation[0]]
             self.saturation.append(self.saturation[0])
             self.saturation.append(self.saturation[0])
-            self.sliders[1].setValue(self.saturation[1][self.currentZ])
-            self.sliders[2].setValue(self.saturation[2][self.currentZ])
         else:
             self.saturation = [copy.deepcopy(self.saturation[r]) for r in range(img_norm.shape[-1])]
             if len(self.saturation) == 2:
                 self.saturation.append([])
                 for n in range(self.NZ):
                     self.saturation[-1].append([0, 255])
-                self.sliders[2].setValue(self.saturation[2][self.currentZ])
-        print(len(self.saturation))
-        print(len(self.saturation[0]))
+        
+        self.sliders[0].setValue(self.saturation[0][self.currentZ])
+        self.sliders[1].setValue(self.saturation[1][self.currentZ])
+        self.sliders[2].setValue(self.saturation[2][self.currentZ])
+        # print(len(self.saturation), len(self.saturation[0]))
 
     def get_model_path(self, custom=False):
         if custom:
