@@ -8,10 +8,14 @@ import torch.nn.functional as F
 from pathlib import Path
 torch.backends.cuda.matmul.allow_tf32 = True
 
+import logging
+
+vit_logger = logging.getLogger(__name__)
+
 try:
     from dinov3.hub.backbones import dinov3_vitl16, dinov3_vitb16
-except ImportError:
-    raise ImportError("dinov3 is required for CPDINO. Install with 'pip install cellpose[dino]'.")
+except:
+    vit_logger.warning("Could not import CPDINO, run `pip install cellpose[dino]` to use CPDINO model")
 
 
 class BaseModel(nn.Module):
