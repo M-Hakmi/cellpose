@@ -34,7 +34,7 @@ New Cellpose4 models added! We have included new Cellpose models based on [DINOv
 We have also updated the CellposeSAM model (`cpsam_v2`), and it now predicts fewer spurious masks in low-contrast regions. 
 To use the new models, `pip install cellpose[dino] --upgrade`, and find more details [here](https://cellpose.readthedocs.io/en/latest/models.html).
 
-:triangular_flag_on_post: The Cellpose-SAM model is trained on data that is licensed under **CC-BY-NC**. The Cellpose annotated dataset is also CC-BY-NC.
+:triangular_flag_on_post: All Cellpose models are trained on data that is licensed under **CC-BY-NC**. The Cellpose annotated dataset is also CC-BY-NC.
 
 ### CITATION
 
