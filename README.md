@@ -28,6 +28,12 @@ Example notebooks:
 * [test_Cellpose-SAM.ipynb](https://github.com/MouseLand/cellpose/blob/main/notebooks/test_Cellpose-SAM.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MouseLand/cellpose/blob/main/notebooks/test_Cellpose-SAM.ipynb): shows running Cellpose-SAM using example data in 2D and 3D
 * [train_Cellpose-SAM.ipynb](https://github.com/MouseLand/cellpose/blob/main/notebooks/train_Cellpose-SAM.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MouseLand/cellpose/blob/main/notebooks/train_Cellpose-SAM.ipynb): train Cellpose-SAM on your own labeled data (also optional example data provided)
 
+### :star2: v4.2+ update (June 2026) :star2:
+
+New Cellpose4 models added! We have included new Cellpose models based on [DINOv3](https://github.com/facebookresearch/dinov3), `cpdino` and `cpdino-vitb`. 
+We have also updated the CellposeSAM model (`cpsam_v2`), and it now predicts fewer spurious masks in low-contrast regions. 
+To use the new models, `pip install cellpose[dino] --upgrade`, and find more details [here](https://cellpose.readthedocs.io/en/latest/models.html).
+
 :triangular_flag_on_post: The Cellpose-SAM model is trained on data that is licensed under **CC-BY-NC**. The Cellpose annotated dataset is also CC-BY-NC.
 
 ### CITATION
@@ -96,10 +102,10 @@ If you are using a GPU, make sure its drivers and the cuda libraries are correct
 
 1. Install a [miniforge](https://github.com/conda-forge/miniforge) distribution of Python. Note you might need to use an anaconda prompt if you did not add anaconda to the path.
 2. Open an anaconda prompt / command prompt which has `conda` for **python 3** in the path
-3. Create a new environment with `conda create --name cellpose python=3.10`. We recommend python 3.10, but python 3.9 and 3.11 will also work.
+3. Create a new environment with `conda create --name cellpose python=3.12`. We recommend python 3.12, but python 3.9 and 3.11 will also work.
 4. To activate this new environment, run `conda activate cellpose`
 5. (option 1) To install cellpose with the GUI, run `python -m pip install cellpose[gui]`.  If you're on a zsh server, you may need to use ' ': `python -m pip install 'cellpose[gui]'`.
-6. (option 2) To install cellpose without the GUI, run `python -m pip install cellpose`. 
+6. (option 2) To install cellpose without the GUI, run `python -m pip install cellpose[dino]`. 
 
 To upgrade cellpose (package [here](https://pypi.org/project/cellpose/)), run the following in the environment:
 
@@ -205,4 +211,4 @@ For multi-channel, multi-Z tiff's, the expected format is Z x channels x Ly x Lx
 
 ### Download of pretrained models
 
-The models will be downloaded automatically from the [website](https://www.cellpose.org) when you first run a pretrained model in cellpose. If you are having issues with the downloads, you can download them from this [google drive zip file](https://drive.google.com/file/d/1zHGFYCqRCTwTPwgEUMNZu0EhQy2zaovg/view?usp=sharing), unzip the file and put the models in your home directory under the path .cellpose/models/, e.g. on Windows this would be C:/Users/YOUR_USERNAME/.cellpose/models/ or on Linux this would be /home/YOUR_USERNAME/.cellpose/models/, so /home/YOUR_USERNAME/.cellpose/models/cyto_0 is the full path to one model for example. If you cannot access google drive, the models are also available on baidu: Link：https://pan.baidu.com/s/1CARpRGCBHIYaz7KeyoX-fg ; Fetch code：pose ; thanks to @qixinbo!
+The models will be downloaded automatically from [huggingface](https://huggingface.co/mouseland/cellpose-sam/tree/main) (Cellpose4+), or from the [website](https://www.cellpose.org) (Cellpose1-3), when you first run a pretrained model in cellpose. If you are having issues with the downloads, you can download them from this [google drive zip file](https://drive.google.com/file/d/1zHGFYCqRCTwTPwgEUMNZu0EhQy2zaovg/view?usp=sharing), unzip the file and put the models in your home directory under the path .cellpose/models/, e.g. on Windows this would be C:/Users/YOUR_USERNAME/.cellpose/models/ or on Linux this would be /home/YOUR_USERNAME/.cellpose/models/, so /home/YOUR_USERNAME/.cellpose/models/cyto_0 is the full path to one model for example. If you cannot access google drive, the models are also available on baidu: Link：https://pan.baidu.com/s/1CARpRGCBHIYaz7KeyoX-fg ; Fetch code：pose ; thanks to @qixinbo!
