@@ -210,6 +210,10 @@ On the demo images each of these steps should run in less than a few seconds on 
 
 For multi-channel, multi-Z tiff's, the expected format is Z x channels x Ly x Lx. Open the GUI for 3D stacks with `python -m cellpose --Zstack`.
 
-### Download of pretrained models
+## Contributions 
+
+We are happy to accept small PRs for bug fixes, but generally do not accept many PRs as we have limited time to review them. Please make sure that all the tests are passing locally with the ``--runslow`` option. Also, we expect you to have created the PR and written the code yourself, not used an AI agent to solve the problem and implement it. You should be able to explain the fix yourself, and please do so briefly in the PR.
+
+## Download of pretrained models
 
 The models will be downloaded automatically from [huggingface](https://huggingface.co/mouseland/cellpose-sam/tree/main) (Cellpose4+), or from the [website](https://www.cellpose.org) (Cellpose1-3), when you first run a pretrained model in cellpose. If you are having issues with the downloads, you can download them from this [google drive zip file](https://drive.google.com/file/d/1zHGFYCqRCTwTPwgEUMNZu0EhQy2zaovg/view?usp=sharing), unzip the file and put the models in your home directory under the path .cellpose/models/, e.g. on Windows this would be C:/Users/YOUR_USERNAME/.cellpose/models/ or on Linux this would be /home/YOUR_USERNAME/.cellpose/models/, so /home/YOUR_USERNAME/.cellpose/models/cyto_0 is the full path to one model for example. If you cannot access google drive, the models are also available on baidu: Link：https://pan.baidu.com/s/1CARpRGCBHIYaz7KeyoX-fg ; Fetch code：pose ; thanks to @qixinbo!
