@@ -218,7 +218,7 @@ def fig2(root, save_fig=False):
     axin.text(x0, 0, "false negatives (FN)", color="r", va="center")
 
     axin.scatter(2, -1.5, marker="o", color=colors_ia[1], s=100, facecolor="none", lw=1.5)
-    axin.text(1.8, -1.5, "human consensus", color=colors_ia[1], va="center", ha="right")
+    axin.text(1.8, -1.5, "ground-truth", color=colors_ia[1], va="center", ha="right")
 
     for k in range(2):
         if k==0:
@@ -245,7 +245,7 @@ def fig2(root, save_fig=False):
                     ax.scatter(np.median(outline[:,0]), np.median(outline[:,1]), color="r", 
                             s=300, marker="x", lw=2, zorder=30)
         ax.axis("off")
-        ax.set_title(f"Annotator {k+1}\n to human consensus", loc="center")
+        ax.set_title(f"Annotator {k+1}\n to ground-truth", loc="center")
 
     iplot_ia = np.array([0, 1])
     iplot_errors = np.arange(len(aps))
@@ -284,7 +284,7 @@ def fig2(root, save_fig=False):
     axin.set_xlim([-0.5, (len(aps)+1)+.5])    
     axin.axis("off")
     colors_all = [*colors_ia, *[alg_dict[alg]["color"] for alg in algs]]
-    labels_all = ["Annotator 2", "human consensus\n(estimate)"] + [alg_dict[alg]["name"] for alg in algs]
+    labels_all = ["Annotator 2", "absolute bound\n(estimate)"] + [alg_dict[alg]["name"] for alg in algs]
     labels_all = [label.replace("MicroSAM", "MicroSAM (2026)") for label in labels_all]
     ax.set_xticks(np.arange(0, len(aps)+2))
     ax.set_xticklabels(labels_all, rotation=45, ha="right")
