@@ -213,12 +213,12 @@ def masks_to_outlines(masks):
         return outlines
 
 
-def outlines_list(masks, multiprocessing_threshold=1000, multiprocessing=None):
+def outlines_list(masks, multiprocessing_threshold=50000, multiprocessing=None):
     """Get outlines of masks as a list to loop over for plotting.
 
     Args:
         masks (ndarray): Array of masks.
-        multiprocessing_threshold (int, optional): Threshold for enabling multiprocessing. Defaults to 1000.
+        multiprocessing_threshold (int, optional): Threshold for enabling multiprocessing. Defaults to 50000.
         multiprocessing (bool, optional): Flag to enable multiprocessing. Defaults to None.
 
     Returns:
